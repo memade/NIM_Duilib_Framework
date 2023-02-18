@@ -1,3 +1,11 @@
 *.memade
 tmp/
 libs/
+compile/
+bin/basic.exe
+bin/controls.exe
+bin/datetime.exe
+bin/layouts.exe
+bin/move_control.exe
+bin/richlist.exe
+bin/virtualbox.exe

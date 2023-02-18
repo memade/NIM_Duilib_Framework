@@ -89,7 +89,7 @@ void CFileDialogEx::SetFilter(LPCTSTR lpszFilter)
 void CFileDialogEx::SetFilter(std::map<LPCTSTR,LPCTSTR>& filters)
 {
 	std::map<LPCTSTR,LPCTSTR>::iterator it = filters.begin();
-	const int size = filters.size()*100;
+	const size_t size = filters.size()*100;
 	wchar_t* filterstring= new wchar_t[size];
 	int offset = 0;
 	for(;it != filters.end();it++)

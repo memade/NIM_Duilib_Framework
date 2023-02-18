@@ -18,7 +18,7 @@ namespace win32
 HMODULE GetModuleHandleFromAddress(void* address)
 {
 	MEMORY_BASIC_INFORMATION mbi = {0};
-	DWORD result = ::VirtualQuery(address, &mbi, sizeof(mbi));
+	SIZE_T result = ::VirtualQuery(address, &mbi, sizeof(mbi));
 	assert(result == sizeof(mbi));
 	return static_cast<HMODULE>(mbi.AllocationBase);
 }
