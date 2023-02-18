@@ -1,4 +1,6 @@
 *.memade
+
+*.pdb
 tmp/
 libs/
 compile/
