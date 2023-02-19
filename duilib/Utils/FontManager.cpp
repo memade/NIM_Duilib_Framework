@@ -16,8 +16,8 @@ void FontManager::AddFontResource(const std::wstring& strFontFile, const std::ws
 	if (GlobalManager::IsUseZip()) {
 		HGLOBAL hGlobal = GlobalManager::GetZipData(path);
 		if (hGlobal) {
-			void *data = GlobalLock(hGlobal);
-			DWORD len = GlobalSize(hGlobal);
+			void *data = ::GlobalLock(hGlobal);
+			DWORD len = static_cast<DWORD>(::GlobalSize(hGlobal));
 			DWORD dwFonts = 0;
 			HANDLE handle = AddFontMemResourceEx(data, len, NULL, &dwFonts);
 			res = handle != NULL;
