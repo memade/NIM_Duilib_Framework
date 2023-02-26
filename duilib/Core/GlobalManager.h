@@ -471,7 +471,6 @@ public:
 	 */
 	static bool OpenResZip(const std::wstring& path, const std::string& password);
 
-	static bool OpenResZipBuffer(const std::string& buffer, const std::string& password);
 	/**
 	 * @brief 获取压缩包中的内容到内存
 	 * @param[in] path 要获取的文件的路径

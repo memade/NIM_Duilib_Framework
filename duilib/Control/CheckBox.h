@@ -324,16 +324,16 @@ void CheckBoxTemplate<InheritType>::PaintText(IRenderContext* pRender)
     if (this->m_animationManager.GetAnimationPlayer(kAnimationHot)) {
         if ((stateType == kControlStateNormal || stateType == kControlStateHot)
             && !GetSelectedStateTextColor(kControlStateHot).empty()) {
-            std::wstring strclrColor = GetSelectedStateTextColor(kControlStateNormal);
-            if (!strclrColor.empty()) {
-                dwClrColor = this->GetWindowColor(strclrColor);
+            std::wstring clrColor = GetSelectedStateTextColor(kControlStateNormal);
+            if (!clrColor.empty()) {
+                DWORD dwClrColor = this->GetWindowColor(clrColor);
                 pRender->DrawText(rc, this->GetText(), dwClrColor, this->m_sFontId, this->m_uTextStyle, 255, this->m_bLineLimit);
             }
 
             if (this->m_nHotAlpha > 0) {
-                clrColor = GetSelectedStateTextColor(kControlStateHot);
+                std::wstring clrColor = GetSelectedStateTextColor(kControlStateHot);
                 if (!clrColor.empty()) {
-                    dwClrColor = this->GetWindowColor(clrColor);
+                    DWORD dwClrColor = this->GetWindowColor(clrColor);
                     pRender->DrawText(rc, this->GetText(), dwClrColor, this->m_sFontId, this->m_uTextStyle, (BYTE)this->m_nHotAlpha, this->m_bLineLimit);
                 }
             }

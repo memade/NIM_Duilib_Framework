@@ -95,6 +95,7 @@ namespace ui
   m_sToolTipTextId(r.m_sToolTipTextId),
   m_sUserData(r.m_sUserData),
   m_UserData(r.m_UserData),
+  m_UserCache(r.m_UserCache),
   m_strBkColor(r.m_strBkColor),
   m_strLoadingBkColor(r.m_strLoadingBkColor),
   m_colorMap(r.m_colorMap),
@@ -495,25 +496,25 @@ namespace ui
  {
   return m_sUserData;
  }
-
+ std::string Control::GetUserCache() const {
+  return m_UserCache;
+ }
+ std::wstring Control::GetUserData() const {
+  return m_UserData;
+ }
+ void Control::SetUserCache(const std::string& cache) {
+  m_UserCache = cache;
+ }
+ void Control::SetUserData(const std::wstring& data) {
+  m_UserData = data;
+ }
  std::string Control::GetUTF8DataID() const
  {
   std::string strOut;
   StringHelper::UnicodeToMBCS(m_sUserData, strOut, CP_UTF8);
   return strOut;
  }
- void Control::SetUserCache(const std::string& cache) {
-  m_UserCache = cache;
- }
- const std::string& Control::GetUserCache() const {
-  return m_UserCache;
- }
- void Control::SetUserData(const std::wstring& userdata) {
-  m_UserData = userdata;
- }
- const std::wstring& Control::GetUserData() const {
-  return m_UserData;
- }
+
  void Control::SetDataID(const std::wstring& strText)
  {
   m_sUserData = strText;
@@ -855,7 +856,7 @@ namespace ui
    }
 
    if (bRet) {
-    auto callback = OnXmlEvent.find(msg.Type);
+    callback = OnXmlEvent.find(msg.Type);
     if (callback != OnXmlEvent.end()) {
      bRet = callback->second(&msg);
     }
@@ -1223,6 +1224,7 @@ namespace ui
   else if (strName == _T("tooltiptext")) SetToolTipText(strValue);
   else if (strName == _T("tooltiptextid")) SetToolTipTextId(strValue);
   else if (strName == _T("dataid")) SetDataID(strValue);
+  else if (strName == _T("userdata")) SetUserData(strValue);
   else if (strName == _T("menupopup")) SetMenuPopup(strValue);
   else if (strName == _T("menualign")) SetMenuAlign(strValue);
   else if (strName == _T("enabled")) SetEnabled(strValue == _T("true"));
@@ -1255,7 +1257,6 @@ namespace ui
   else if (strName == _T("tabstop")) SetTabStop(strValue == _T("true"));
   else if (strName == _T("loadingimage")) SetLoadingImage(strValue);
   else if (strName == _T("loadingbkcolor")) SetLoadingBkColor(strValue);
-  else if (strName == _T("userdata")) SetUserData(strValue);
   else {
    ASSERT(FALSE);
   }

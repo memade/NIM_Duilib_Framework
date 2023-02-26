@@ -1,8 +1,8 @@
 ﻿#include "stdafx.h"
 #include "controls_form.h"
 #include "about_form.h"
-#include "ui_components\comboex\CheckCombo.h"
-#include "ui_components\comboex\FilterCombo.h"
+#include "comboex\CheckCombo.h"
+#include "comboex\FilterCombo.h"
 
 #include <fstream>
 

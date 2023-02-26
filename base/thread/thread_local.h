@@ -77,7 +77,11 @@ public:
 
 	void Set(bool val)
 	{
+#ifdef _WIN64
 		tlp_.Set(reinterpret_cast<void*>(val ? 1ull : 0ull));
+#else
+		tlp_.Set(reinterpret_cast<void*>(val ? 1 : 0));
+#endif
 	}
 
 private:

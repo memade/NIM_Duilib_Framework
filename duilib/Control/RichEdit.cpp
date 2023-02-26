@@ -812,7 +812,6 @@ namespace ui {
 
  void CTxtWinHost::SetWordWrap(BOOL fWordWrap)
  {
-  fWordWrap = fWordWrap;
   pserv->OnTxPropertyBitsChange(TXTBIT_WORDWRAP, fWordWrap ? TXTBIT_WORDWRAP : 0);
  }
 
@@ -1882,7 +1881,7 @@ namespace ui {
  {
   if (m_pTwh) {
    LRESULT lr = m_pTwh->GetTextServices()->TxSendMessage(msg, wParam, lParam, plresult);
-   return static_cast<HRESULT>(lr);
+   return lr;
   }
   return S_FALSE;
  }
@@ -2072,20 +2071,20 @@ namespace ui {
  // 引入iPos就是为了修正这个bug
  void RichEdit::SetScrollPos(CSize szPos)
  {
-  std::int64_t cx = 0;
-  std::int64_t cy = 0;
+  int cx = 0;
+  int cy = 0;
   if (m_pVerticalScrollBar && m_pVerticalScrollBar->IsValid()) {
-   std::int64_t iLastScrollPos = m_pVerticalScrollBar->GetScrollPos();
+   int iLastScrollPos = m_pVerticalScrollBar->GetScrollPos();
    m_pVerticalScrollBar->SetScrollPos(szPos.cy);
    cy = m_pVerticalScrollBar->GetScrollPos() - iLastScrollPos;
   }
   if (m_pHorizontalScrollBar && m_pHorizontalScrollBar->IsValid()) {
-   std::int64_t iLastScrollPos = m_pHorizontalScrollBar->GetScrollPos();
+   int iLastScrollPos = m_pHorizontalScrollBar->GetScrollPos();
    m_pHorizontalScrollBar->SetScrollPos(szPos.cx);
    cx = m_pHorizontalScrollBar->GetScrollPos() - iLastScrollPos;
   }
   if (cy != 0) {
-   std::int64_t iPos = 0;
+   int iPos = 0;
    if (m_pTwh && !m_bRich && m_pVerticalScrollBar && m_pVerticalScrollBar->IsValid())
     iPos = m_pVerticalScrollBar->GetScrollPos();
    WPARAM wParam = MAKEWPARAM(SB_THUMBPOSITION, m_pVerticalScrollBar->GetScrollPos());
@@ -2108,7 +2107,7 @@ namespace ui {
 
  void RichEdit::LineDown()
  {
-  std::int64_t iPos = 0;
+  int iPos = 0;
   if (m_pTwh && !m_bRich && m_pVerticalScrollBar && m_pVerticalScrollBar->IsValid())
    iPos = m_pVerticalScrollBar->GetScrollPos();
   TxSendMessage(WM_VSCROLL, SB_LINEDOWN, 0L, 0);
@@ -2482,7 +2481,7 @@ namespace ui {
   std::wstring strLink;
   if (HittestCustomLink(event.ptMouse, strLink))
   {
-   ::SetCursor(::LoadCursorW(NULL, MAKEINTRESOURCE(IDC_HAND)));
+   ::SetCursor(::LoadCursor(NULL, MAKEINTRESOURCE(IDC_HAND)));
    return;
   }
   if (m_pTwh && !IsReadOnly() && m_pTwh->DoSetCursor(NULL, &event.ptMouse)) {

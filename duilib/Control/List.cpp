@@ -241,8 +241,8 @@ bool ListBox::SetItemIndex(Control* pControl, std::size_t iIndex)
 	std::size_t iMinIndex = min((std::size_t)iOrginIndex, iIndex);
 	std::size_t iMaxIndex = max((std::size_t)iOrginIndex, iIndex);
 	for(std::size_t i = iMinIndex; i < iMaxIndex + 1; ++i) {
-		Control* _pControl = GetItemAt(i);
-		ListContainerElement* pListItem = dynamic_cast<ListContainerElement*>(_pControl);
+		Control* pControl = GetItemAt(i);
+		ListContainerElement* pListItem = dynamic_cast<ListContainerElement*>(pControl);
 		if( pListItem != NULL ) {
 			pListItem->SetIndex((int)i);
 		}

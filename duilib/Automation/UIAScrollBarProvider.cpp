@@ -79,7 +79,7 @@ IFACEMETHODIMP UIAScrollBarProvider::SetValue(double val)
 	if (!pScrollBar)
 		return E_INVALIDARG;
 
-	pScrollBar->SetScrollPos(static_cast<std::int64_t>(val));
+	pScrollBar->SetScrollPos(val);
 
 	return S_OK;
 }
@@ -92,7 +92,7 @@ IFACEMETHODIMP UIAScrollBarProvider::get_Value(double* pRetVal)
 	if (!pScrollBar)
 		return E_INVALIDARG;
 
-	*pRetVal = pScrollBar->GetScrollPos() * 1.0;
+	*pRetVal = pScrollBar->GetScrollPos();
 
 	return S_OK;
 }

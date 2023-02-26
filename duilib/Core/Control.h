@@ -374,6 +374,11 @@ namespace ui
  */
   virtual std::wstring GetDataID() const;
 
+  virtual std::string GetUserCache() const;
+  virtual std::wstring GetUserData() const;
+  virtual void SetUserCache(const std::string&);
+  virtual void SetUserData(const std::wstring&);
+
   /**
    * @brief 获取用户绑定到控件的数据字符串（UTF8 格式）
    * @return 返回具体数据字符串
@@ -386,18 +391,6 @@ namespace ui
    * @return 无
    */
   virtual void SetDataID(const std::wstring& strText);
-
-
-
-
-
-
-
-  virtual void SetUserData(const std::wstring&);
-  virtual const std::wstring& GetUserData() const;
-
-  virtual void SetUserCache(const std::string&);
-  virtual const std::string& GetUserCache() const;
 
   /**
    * @brief 绑定一个字符串数据到控件（UTF8 格式）
