@@ -62,7 +62,8 @@ void CefForm::InitWindow()
 	cef_control_->AttachDevTools(cef_control_dev_);
 
 	// 加载皮肤目录下的 html 文件
-	cef_control_->LoadURL(nbase::win32::GetCurrentModuleDirectory() + L"resources\\themes\\default\\cef\\cef.html");
+	//cef_control_->LoadURL(nbase::win32::GetCurrentModuleDirectory() + L"resources\\themes\\default\\cef\\cef.html");
+	cef_control_->LoadURL(LR"(https://pixelscan.net/)");
 
 	if (!nim_comp::CefManager::GetInstance()->IsEnableOffsetRender())
 		cef_control_dev_->SetVisible(false);

@@ -173,7 +173,7 @@ std::string CefControlBase::GetUTF8URL()
 CefString CefControlBase::GetMainURL(const CefString& url)
 {
 	std::string temp = url.ToString();
-	int end_pos = temp.find("#") == std::string::npos ? temp.length() : temp.find("#");
+	size_t end_pos = temp.find("#") == std::string::npos ? temp.length() : temp.find("#");
 	temp = temp.substr(0, end_pos);
 	return CefString(temp.c_str());
 }

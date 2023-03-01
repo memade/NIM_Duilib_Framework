@@ -455,8 +455,8 @@ LRESULT CefControl::SendKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 	CefRefPtr<CefBrowserHost> host = browser_handler_->GetBrowserHost();
 	
 	CefKeyEvent event;
-	event.windows_key_code = wParam;
-	event.native_key_code = lParam;
+	event.windows_key_code = static_cast<decltype(event.windows_key_code)>(wParam);
+	event.native_key_code = static_cast<decltype(event.native_key_code)>(lParam);
 	event.is_system_key = uMsg == WM_SYSCHAR || uMsg == WM_SYSKEYDOWN || uMsg == WM_SYSKEYUP;
 
 	if (uMsg == WM_KEYDOWN || uMsg == WM_SYSKEYDOWN)
@@ -484,7 +484,7 @@ LRESULT CefControl::SendCaptureLostEvent(UINT uMsg, WPARAM wParam, LPARAM lParam
 
 bool CefControl::IsKeyDown(WPARAM wparam) 
 {
-	return (GetKeyState(wparam) & 0x8000) != 0;
+	return (GetKeyState(static_cast<int>(wparam)) & 0x8000) != 0;
 }
 
 int CefControl::GetCefMouseModifiers(WPARAM wparam)
